@@ -30,11 +30,27 @@ public class Conserto {
     @Embedded
     private Veiculo veiculo;
 
+    private Boolean ativo;
+
     // monta o conserto a partir do DTO que veio na requisição
     public Conserto(DadosCadastroConserto dados) {
+        this.ativo = true;
         this.dataEntrada = dados.dataEntrada();
         this.dataSaida = dados.dataSaida();
         this.mecanico = new Mecanico(dados.mecanico());
         this.veiculo = new Veiculo(dados.veiculo());
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoConserto dados) {
+        if (dados.dataSaida() != null) {
+            this.dataSaida = dados.dataSaida();
+        }
+        if (dados.mecanico() != null) {
+            this.mecanico.atualizarInformacoes(dados.mecanico());
+        }
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }
