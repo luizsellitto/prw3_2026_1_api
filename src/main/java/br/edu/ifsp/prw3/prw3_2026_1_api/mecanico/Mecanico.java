@@ -22,7 +22,7 @@ public class Mecanico {
     }
 
     public void atualizarInformacoes(DadosMecanico dados) {
-        if (dados.nome() != null) {
+        if (dados.nome() != null && !dados.nome().isBlank()) {
             this.nome = dados.nome();
         }
         if (dados.anosExperiencia() != null) {
